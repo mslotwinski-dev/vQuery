@@ -1,0 +1,5 @@
+file = open("./dist/vquery.js")
+file_content = file.read()
+file = open("./dist/vquery.js", "w")
+file.write(file_content + "\n\nconst $ = vQuery.default")
+file.close()
