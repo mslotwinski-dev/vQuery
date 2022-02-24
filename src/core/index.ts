@@ -1,11 +1,11 @@
 export class vQuery {
-    selector: Element | null
+  selector: Element | null
 
-    constructor(selector: string) {
-        this.selector = document.querySelector(selector)
-    }
+  constructor(selector: string) {
+    this.selector = document.querySelector(selector)
+  }
 
-    getID() {
-        console.log(this.selector)
-    }
+  getID() {
+    console.log(this.selector)
+  }
 }

@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   entry: './src/main.ts',
@@ -6,12 +6,10 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: [
-          'ts-loader',
-        ],
+        use: ['ts-loader'],
         exclude: /node_modules/,
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     alias: {
@@ -22,12 +20,11 @@ module.exports = {
   },
   output: {
     filename: 'vquery.js',
-    library: "vQuery",
+    library: 'vQuery',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
     umdNamedDefine: true,
     clean: true,
-
   },
-  mode: "development",
+  mode: 'development',
 }
