@@ -1,7 +1,9 @@
-import { ErrorHandler } from '@/handlers/error'
-import { HtmlModes } from './html'
+import { _vQuery } from './header'
 
-export class vQuery {
+import { HtmlModes } from './html/html'
+import { ErrorHandler } from '@/handlers/error'
+
+export class vQuery implements _vQuery {
   private query: string
   private selector: Element[]
 
@@ -12,20 +14,19 @@ export class vQuery {
     this.selector = Array.from(selector)
   }
 
-  private CheckSelector() {
+  private CheckSelectorr() {
     if (!this.selector || this.selector.length == 0) {
       return ErrorHandler(`Invalid query selector "${this.query}"`)
     }
   }
 
   Inspect() {
-    if (this.CheckSelector()) return
-
+    if (this.CheckSelectorr()) return
     console.log(this.selector)
   }
 
   Html(content: string, mode: HtmlModes = HtmlModes.WRITE) {
-    if (this.CheckSelector()) return
+    if (this.CheckSelectorr()) return
 
     for (const el of this.selector) {
       switch (mode as HtmlModes) {
