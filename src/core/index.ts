@@ -1,17 +1,24 @@
 import { _vQuery } from './header'
 
-import { HtmlModes } from './html/html'
-import { ErrorHandler } from '@/handlers/error'
+import { vQueryDecorator } from '@/decorators/main'
 
+import { ErrorHandler } from '@/handlers/error'
+import { MethodModes } from './modes'
+import { CssArgument } from '@/css/argument'
+
+import HtmlService from '@/html'
+import CssService from '@/css'
+
+@vQueryDecorator()
 export class vQuery implements _vQuery {
   private query: string
-  private selector: Element[]
+  private selector: HTMLElement[]
 
   constructor(query: string) {
     this.query = query
 
     const selector = document.querySelectorAll(query)
-    this.selector = Array.from(selector)
+    this.selector = Array.from(selector) as HTMLElement[]
   }
 
   private CheckSelectorr() {
@@ -25,35 +32,15 @@ export class vQuery implements _vQuery {
     console.log(this.selector)
   }
 
-  Html(content: string, mode: HtmlModes = HtmlModes.WRITE) {
+  Html(content: string, mode: MethodModes = MethodModes.WRITE) {
     if (this.CheckSelectorr()) return
 
-    for (const el of this.selector) {
-      switch (mode as HtmlModes) {
-        case HtmlModes.WRITE: {
-          el.innerHTML = content
-          break
-        }
+    HtmlService(this.selector, content, mode)
+  }
 
-        case HtmlModes.ADD: {
-          el.innerHTML += content
-          break
-        }
+  Css(content: CssArgument, mode: MethodModes = MethodModes.ADD) {
+    if (this.CheckSelectorr()) return
 
-        case HtmlModes.REMOVE: {
-          el.innerHTML = el.innerHTML.replace(content, '')
-          break
-        }
-
-        default: {
-          return ErrorHandler(
-            `Invalid mode, try using one of these:
-            > 0 (default) for replacing content
-            > 1 for adding content
-            > -1 for removing content`
-          )
-        }
-      }
-    }
+    CssService(this.selector, content, mode)
   }
 }

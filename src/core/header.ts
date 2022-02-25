@@ -1,6 +1,8 @@
-import { HtmlModes } from './html/html'
+import { MethodModes } from './modes'
+import { CssArgument } from '@/css/argument'
 
 export interface _vQuery {
   Inspect: () => void
-  Html: (content: string, mode: HtmlModes) => void
+  Html: (content: string, mode: MethodModes) => void
+  Css: (content: CssArgument, mode: MethodModes) => void
 }

@@ -1,7 +1,8 @@
 import { ErrorHandler } from '@/handlers/error'
 
-export const CheckSelector = () => (target: any, key: string | symbol, descriptor: PropertyDescriptor) => {
-  const childFunction = descriptor.value
+export const CheckSelector =
+  () => (target: any, key: string | symbol, descriptor: PropertyDescriptor) => {
+    const childFunction = descriptor.value
 
     descriptor.value = (...args: any[]) => {
       if (!'html' || ['html'].length == 0) {
@@ -11,4 +12,4 @@ export const CheckSelector = () => (target: any, key: string | symbol, descripto
       }
     }
     return descriptor
-}
+  }
