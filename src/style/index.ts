@@ -33,9 +33,9 @@ export default (
       default: {
         return ErrorHandler(
           `Invalid mode, try using one of these:
-                > 0 (default) for replacing content
-                > 1 for adding content
-                > -1 for removing content`
+            > 0 (default) for replacing content
+            > 1 for adding content
+            > -1 for removing content`
         )
       }
     }
